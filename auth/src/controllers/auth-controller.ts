@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { DatabaseConnectionError } from "../errors/db-conn-error";
+import { BadRequestError } from "../errors/bad-request-error";
+import { AuthService } from "../services/auth-service";
 
 const fetchCurrentUser = (req: Request, res: Response, next: NextFunction) => {
   res.send("Hi there");
@@ -12,8 +13,21 @@ const signInUser = (req: Request, res: Response, next: NextFunction) => {
 const signUpUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { email, password } = req.body;
-    throw new DatabaseConnectionError();
-    // res.send("Hi there");
+
+    const authService = new AuthService(email);
+    const existingUser = await authService.fetchUserByEmail();
+
+    if (existingUser) {
+      throw new BadRequestError(
+        "Entered email already in use. Please use any other email"
+      );
+    }
+
+    const hashedPassword = await AuthService.hashPassword(password);
+
+    const user = await authService.registerUser(hashedPassword);
+
+    res.status(201).send(user);
   } catch (err) {
     next(err);
   }

@@ -10,6 +10,11 @@ const env = process.env;
 
 const config = {
   port: env.AUTH_PORT,
+  mongodb: {
+    host: "mongodb://auth-mongo-svc",
+    port: env.MONGO_PORT,
+    name: env.DB_NAME,
+  },
 };
 
 export { config };

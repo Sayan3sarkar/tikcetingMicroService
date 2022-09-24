@@ -17,6 +17,7 @@ app.all("*", async (req, res, next) => {
     next(err);
   }
 });
+
 app.use(errorHandler);
 
 export { app };
