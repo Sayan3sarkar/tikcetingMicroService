@@ -27,6 +27,11 @@ const signUpUser = async (req: Request, res: Response, next: NextFunction) => {
 
     const user = await authService.registerUser(hashedPassword);
 
+    const authToken = authService.generateJWT(user.id, user.email);
+    req.session = {
+      jwt: authToken,
+    };
+
     res.status(201).send(user);
   } catch (err) {
     next(err);

@@ -1,4 +1,5 @@
 import { randomBytes, scrypt } from "crypto";
+import { sign } from "jsonwebtoken";
 import { promisify } from "util";
 import { getUserByEmail, signUpUser } from "../database/mongoDB/helper/user";
 
@@ -19,6 +20,16 @@ export class AuthService {
     const buffer = (await scryptAsync(password, salt, 64)) as Buffer;
 
     return `${buffer.toString("hex")}.${salt}`;
+  }
+
+  generateJWT(id: string, email: string) {
+    return sign(
+      {
+        id,
+        email,
+      },
+      process.env.JWT_KEY!
+    );
   }
 
   static async comparePassword(
