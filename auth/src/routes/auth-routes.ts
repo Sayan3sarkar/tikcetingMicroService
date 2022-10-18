@@ -12,8 +12,8 @@ import { validateSignInOrSignUpMiddleware } from "../middleware/validate-request
 export default (app: Application) => {
   app.get(
     "/api/users/currentUser",
-    // currentUserMiddleware,
-    authMiddleware,
+    currentUserMiddleware,
+    // authMiddleware,
     fetchCurrentUser
   );
 
