@@ -6,11 +6,30 @@ import {
   signOutUser,
   signUpUser,
 } from "../controllers/auth-controller";
-import { signUpErrorHandler } from "../middleware/error-handler";
+import { authMiddleware, currentUserMiddleware } from "../middleware/auth";
+import { validateSignInOrSignUpMiddleware } from "../middleware/validate-request";
 
 export default (app: Application) => {
-  app.get("/api/users/currentUser", fetchCurrentUser);
-  app.post("/api/users/signIn", signInUser);
+  app.get(
+    "/api/users/currentUser",
+    // currentUserMiddleware,
+    authMiddleware,
+    fetchCurrentUser
+  );
+
+  app.post(
+    "/api/users/signIn",
+    [
+      body("email").isEmail().withMessage("Please Enter a valid email"),
+      body("password")
+        .trim()
+        .notEmpty()
+        .withMessage("You must supply a password"),
+    ],
+    validateSignInOrSignUpMiddleware,
+    signInUser
+  );
+
   app.post(
     "/api/users/signUp",
     [
@@ -23,8 +42,9 @@ export default (app: Application) => {
         })
         .withMessage("Password must be within 8 and 64 characters"),
     ],
-    signUpErrorHandler,
+    validateSignInOrSignUpMiddleware,
     signUpUser
   );
+
   app.post("/api/users/signOut", signOutUser);
 };

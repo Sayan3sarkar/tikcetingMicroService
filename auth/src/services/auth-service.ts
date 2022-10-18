@@ -1,6 +1,7 @@
 import { randomBytes, scrypt } from "crypto";
-import { sign } from "jsonwebtoken";
+import { sign, verify } from "jsonwebtoken";
 import { promisify } from "util";
+import { config } from "../config/config";
 import { getUserByEmail, signUpUser } from "../database/mongoDB/helper/user";
 
 const scryptAsync = promisify(scrypt);
@@ -28,8 +29,12 @@ export class AuthService {
         id,
         email,
       },
-      process.env.JWT_KEY!
+      config.jwtSecret
     );
+  }
+
+  static validateToken(authToken: string) {
+    return verify(authToken, config.jwtSecret);
   }
 
   static async comparePassword(

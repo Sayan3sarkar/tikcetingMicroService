@@ -14,4 +14,9 @@ interface UserModel extends Model<UserDoc> {
   build(attributes: UserAttr): UserDoc;
 }
 
-export { UserAttr, UserDoc, UserModel };
+interface UserPayload {
+  id: string;
+  email: string;
+}
+
+export { UserAttr, UserDoc, UserModel, UserPayload };

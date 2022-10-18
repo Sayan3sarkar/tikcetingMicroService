@@ -15,6 +15,7 @@ const config = {
     port: env.MONGO_PORT,
     name: env.DB_NAME,
   },
+  jwtSecret: process.env.JWT_KEY as string,
 };
 
 export { config };

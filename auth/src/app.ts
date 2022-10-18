@@ -4,7 +4,16 @@ import { NotFoundError } from "./errors/not-found-error";
 import { errorHandler } from "./middleware/error-handler";
 
 import authRoutes from "./routes/auth-routes";
+import { UserPayload } from "./types/userType";
 const app = express();
+
+declare global {
+  namespace Express {
+    interface Request {
+      user?: UserPayload;
+    }
+  }
+}
 
 app.set("trust proxy", true); // Traffic is proxied into our service through ingress-nginx.
 // Express realises that stuff is a proxy and may not be able to trust the https connection.
