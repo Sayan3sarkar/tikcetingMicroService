@@ -2,16 +2,28 @@ import { Schema, Model, model } from "mongoose";
 // import { AuthService } from "../../../services/auth-service";
 import { UserAttr, UserDoc, UserModel } from "../../../types/userType";
 
-const userSchema = new Schema({
-  email: {
-    type: String,
-    required: true,
+const userSchema = new Schema(
+  {
+    email: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
   },
-  password: {
-    type: String,
-    required: true,
-  },
-});
+  {
+    toJSON: {
+      transform(doc, ret) {
+        ret.id = ret._id;
+        delete ret._id;
+        delete ret.password;
+        delete ret.__v;
+      },
+    },
+  }
+);
 
 // Mongoose pre-save hook
 // userSchema.pre("save", async function (done) {
