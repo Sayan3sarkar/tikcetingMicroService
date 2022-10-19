@@ -18,19 +18,6 @@ export default (app: Application) => {
   );
 
   app.post(
-    "/api/users/signIn",
-    [
-      body("email").isEmail().withMessage("Please Enter a valid email"),
-      body("password")
-        .trim()
-        .notEmpty()
-        .withMessage("You must supply a password"),
-    ],
-    validateSignInOrSignUpMiddleware,
-    signInUser
-  );
-
-  app.post(
     "/api/users/signUp",
     [
       body("email").isEmail().withMessage("Please Enter a valid email"),
@@ -44,6 +31,19 @@ export default (app: Application) => {
     ],
     validateSignInOrSignUpMiddleware,
     signUpUser
+  );
+
+  app.post(
+    "/api/users/signIn",
+    [
+      body("email").isEmail().withMessage("Please Enter a valid email"),
+      body("password")
+        .trim()
+        .notEmpty()
+        .withMessage("You must supply a password"),
+    ],
+    validateSignInOrSignUpMiddleware,
+    signInUser
   );
 
   app.post("/api/users/signOut", signOutUser);

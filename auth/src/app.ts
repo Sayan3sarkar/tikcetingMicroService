@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(
   cookieSession({
     signed: false, // no need to encrypt data as any way we are storing JWT inside cookie. JWT's are tamper resistant
-    secure: true, // only accept https connectiion
+    secure: process.env.NODE_ENV !== "test", // only accept https connectiion for NODE_ENV != "test"
   })
 );
 

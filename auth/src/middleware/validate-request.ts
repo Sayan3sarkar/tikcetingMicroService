@@ -14,7 +14,7 @@ function validateSignInOrSignUpMiddleware(
     }
     throw new RequestValidationError(errors.array());
   } catch (err) {
-    console.log(`Error in validation while user registration/login: ${err}`);
+    // console.log(`Error in validation while user registration/login: ${err}`);
     next(err);
   }
 }
