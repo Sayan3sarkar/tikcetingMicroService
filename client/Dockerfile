@@ -7,11 +7,10 @@ WORKDIR /usr/app
 
 # Install dependencies
 COPY ./package.json ./
-RUN npm install --omit=dev
-# RUN npm install --only=prod
+RUN npm install
 
 # Copy codebase
 COPY ./ ./
 
 # Execute container command
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
