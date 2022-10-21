@@ -1,5 +1,4 @@
-import { Schema, Model, model } from "mongoose";
-// import { AuthService } from "../../../services/auth-service";
+import { Schema, model } from "mongoose";
 import { UserAttr, UserDoc, UserModel } from "../../../types/userType";
 
 const userSchema = new Schema(

@@ -6,8 +6,11 @@ import {
   signOutUser,
   signUpUser,
 } from "../controllers/auth-controller";
-import { authMiddleware, currentUserMiddleware } from "../middleware/auth";
-import { validateSignInOrSignUpMiddleware } from "../middleware/validate-request";
+import {
+  // authMiddleware,
+  currentUserMiddleware,
+  validateSignInOrSignUpMiddleware,
+} from "@sayan3sarkar-tickets/common";
 
 export default (app: Application) => {
   app.get(

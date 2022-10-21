@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { BadRequestError } from "../errors/bad-request-error";
+import { BadRequestError } from "@sayan3sarkar-tickets/common";
 import { AuthService } from "../services/auth-service";
 
 const fetchCurrentUser = (req: Request, res: Response, next: NextFunction) => {

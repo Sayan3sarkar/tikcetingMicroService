@@ -1,10 +1,12 @@
 import cookieSession from "cookie-session";
 import express from "express";
-import { NotFoundError } from "./errors/not-found-error";
-import { errorHandler } from "./middleware/error-handler";
+import {
+  NotFoundError,
+  UserPayload,
+  errorHandler,
+} from "@sayan3sarkar-tickets/common";
 
 import authRoutes from "./routes/auth-routes";
-import { UserPayload } from "./types/userType";
 const app = express();
 
 declare global {

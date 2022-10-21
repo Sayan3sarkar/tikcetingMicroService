@@ -33,9 +33,9 @@ export class AuthService {
     );
   }
 
-  static validateToken(authToken: string) {
-    return verify(authToken, config.jwtSecret);
-  }
+  // static validateToken(authToken: string) {
+  //   return verify(authToken, config.jwtSecret);
+  // }
 
   static async comparePassword(
     storedPassword: string,
