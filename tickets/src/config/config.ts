@@ -9,7 +9,7 @@ dotenv.config({
 const env = process.env;
 
 const config = {
-  port: env.AUTH_PORT,
+  port: env.TICKETS_PORT,
   mongodb: {
     host: env.MONGO_URI,
     port: env.MONGO_PORT,
