@@ -4,7 +4,7 @@ import { config } from "../config/config";
 
 let mongo: any;
 beforeAll(async () => {
-  config.jwtSecret = "abcd";
+  process.env.JWT_KEY! = "abcd";
   mongo = await MongoMemoryServer.create();
   const mongoURI = mongo.getUri();
 

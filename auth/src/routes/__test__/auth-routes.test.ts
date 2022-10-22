@@ -115,6 +115,8 @@ it("Clears cookie after successful signOut", async () => {
 // ************************* Current user Route *************************
 it("Responds with details about current user", async () => {
   const cookie = await signInHelper();
+
+  console.log(cookie);
   const res = await request(app)
     .get("/api/users/currentUser")
     .set("Cookie", cookie)

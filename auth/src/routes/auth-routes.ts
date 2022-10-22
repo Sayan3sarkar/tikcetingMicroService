@@ -9,7 +9,7 @@ import {
 import {
   // authMiddleware,
   currentUserMiddleware,
-  validateSignInOrSignUpMiddleware,
+  validateRequest,
 } from "@sayan3sarkar-tickets/common";
 
 export default (app: Application) => {
@@ -32,7 +32,7 @@ export default (app: Application) => {
         })
         .withMessage("Password must be within 8 and 64 characters"),
     ],
-    validateSignInOrSignUpMiddleware,
+    validateRequest,
     signUpUser
   );
 
@@ -45,7 +45,7 @@ export default (app: Application) => {
         .notEmpty()
         .withMessage("You must supply a password"),
     ],
-    validateSignInOrSignUpMiddleware,
+    validateRequest,
     signInUser
   );
 
