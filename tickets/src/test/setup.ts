@@ -1,6 +1,6 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import { config } from "../config/config";
+// import { config } from "../config/config";
 
 let mongo: any;
 beforeAll(async () => {

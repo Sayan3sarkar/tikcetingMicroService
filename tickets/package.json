@@ -19,7 +19,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sayan3sarkar-tickets/common": "^1.0.19",
+    "@sayan3sarkar-tickets/common": "^1.0.21",
     "@types/cookie-session": "^2.0.44",
     "@types/express": "^4.17.14",
     "@types/jest": "^29.2.0",
